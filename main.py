@@ -32,8 +32,11 @@ async def on_message(message):
         if message.content.startswith('!neko'):
             reply = "猫じゃないんですよ！"
             await message.channel.send(reply)
+        elif message.content.startswith("!更新情報"):
+            msg = "【!pair】で被ることがなくなりました,やりましたね！\n【!fortune】でおみくじができます。大凶が出てもへこまないでくださいね"
+            await message.channel.send(msg)
         elif message.content.startswith("!help"):
-            msg = "こちらが私のコマンドリストです！\n【!neko】,【こんにちは】,【ありがとう】,【!board】,【!pair】,【!turn】,\n【megami〇（数字の数、女神をランダムに選出します）】,【天気○○(地域限定)】,【@Honoka】"
+            msg = "こちらが私のコマンドリストです！\n【!neko】,【!board】,【!pair】,【!turn】,【@Honoka】,【!fortune】,\n【megami〇（数字の数、女神をランダムに選出します）】,【天気○○(地域限定)】\nまた、いくつかの言葉に反応します！"
             await message.channel.send(msg)
         elif u'{}'.format(client.user.id) in message.content: # 話しかけられたかの判定
             msg = u'{} はい、なんでしょう！'.format(message.author.mention)  # 返信文の作成
@@ -52,11 +55,12 @@ async def on_message(message):
             msg = random.choice(mylist3) + random.choice(mylist1) + random.choice(mylist2)
             await message.channel.send(msg)
         elif message.content.startswith("!board"):
-            reply = "胸に想いを\n両手に花を\n桜降る代に決闘を!\nプレイヤー1の参加用URL: https://furuyoni-simulator.herokuapp.com/play/xDZCLf2NvmdX\nプレイヤー2の参加用URL: https://furuyoni-simulator.herokuapp.com/play/nWXcT7dNqLer\n観戦用URL: https://furuyoni-simulator.herokuapp.com/watch/4999"
+            reply = "胸に想いを 両手に花を 桜降る代に決闘を!\nプレイヤー1の参加用URL: https://furuyoni-simulator.herokuapp.com/play/xDZCLf2NvmdX\nプレイヤー2の参加用URL: https://furuyoni-simulator.herokuapp.com/play/nWXcT7dNqLer\n観戦用URL: https://furuyoni-simulator.herokuapp.com/watch/4999"
             await message.channel.send(reply)
         elif message.content.startswith("!pair"):
-            mylist = ["ユリナ","ユリナ（第1章）","サイネ（第2章）","サイネ","トコヨ","トコヨ（旅芸人）","ヒミカ","ヒミカ（原初）","オボロ","オボロ（第3章）","ユキヒ","シンラ","ハガネ","チカゲ","チカゲ（第4章）","クルル","サリヤ","ライラ","ホノカ","ウツロ","ウツロ（終章）"]
-            msg = "【" + random.choice(mylist) +"】,【" + random.choice(mylist) + "】"
+            mylist = ["【ユリナ】","【ユリナ（第1章）】","【サイネ（第2章）】","【サイネ】","【トコヨ】","【トコヨ（旅芸人）】","【ヒミカ】","【ヒミカ（原初）】","【オボロ】","【オボロ（第3章）】","【ユキヒ】","【シンラ】","【ハガネ】","【チカゲ】","【チカゲ（第4章）】","【クルル】","【サリヤ】","【ライラ】","【ホノカ】","【ウツロ】","【ウツロ（終章）】"]
+            s = ','
+            msg = s.join(random.sample(mylist,2)) 
             await message.channel.send(msg)
         elif message.content.startswith("megami"):
             content = message.content
@@ -65,15 +69,24 @@ async def on_message(message):
             if result:
                 number = int(result.group(1))
                 mylist = ["ユリナ ","サイネ ","トコヨ ","ヒミカ ","オボロ ","ユキヒ ","シンラ ","ハガネ ","チカゲ ","クルル ","サリヤ ","ライラ ","ホノカ ","ウツロ "]
-                s = ' '
+                s = ','
                 mystr = s.join(random.sample(mylist,number))
                 await message.channel.send(mystr)
+        elif message.content == "!fortune": # Embedを使ったメッセージ送信 と ランダムで要素を選択
+            embed = discord.Embed(title="おみくじ", description=f"{message.author.mention}さんの今日の運勢は！",color=0x2ECC69)
+            embed.set_thumbnail(url=message.author.avatar_url)
+            embed.add_field(name="[運勢] ", value=random.choice(('大吉','大吉','吉','吉','吉','凶','凶', '凶', '大凶')), inline=False)
+            await message.channel.send(embed=embed)
         elif message.content.startswith("バカ"):
             reply = "バカって言うほうがバカなんですよ！"
             await message.channel.send(reply)
-        elif message.content.startswith("だ、誰だ貴様はッ！"):
+        elif message.content.startswith("だ、誰だ貴様"):
             reply = "ぽわぽわちゃんです！"
             await message.channel.send(reply) 
+        elif message.content.startswith("眠たい"):
+            mylist = ["寝ましょう","寝てください","お休みの時間ですよ","徹夜されたんですか？"]
+            reply = random.choice(mylist)
+            await message.channel.send(f"{message.author.mention}さん、" + reply)
         elif message.content.startswith("天気"):
             reg_res = re.compile(u"天気(.+)").search(message.content)
             if reg_res:
