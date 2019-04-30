@@ -55,7 +55,7 @@ async def on_message(message):
             msg = random.choice(mylist3) + random.choice(mylist1) + random.choice(mylist2)
             await message.channel.send(msg)
         elif message.content.startswith("!board"):
-            reply = "胸に想いを 両手に花を 桜降る代に決闘を!\nプレイヤー1の参加用URL: https://furuyoni-simulator.herokuapp.com/play/FW6pXbHUQFqvプレイヤー2の参加用URL: https://furuyoni-simulator.herokuapp.com/play/5QkC4KQCHPGc観戦用URL: https://furuyoni-simulator.herokuapp.com/watch/4867
+            reply = "胸に想いを 両手に花を 桜降る代に決闘を!\nプレイヤー1の参加用URL: https://furuyoni-simulator.herokuapp.com/play/FW6pXbHUQFqvプレイヤー2の参加用URL: https://furuyoni-simulator.herokuapp.com/play/5QkC4KQCHPGc観戦用URL: https://furuyoni-simulator.herokuapp.com/watch/4867"
             await message.channel.send(reply)
         elif message.content.startswith("!pair"):
             mylist = ["【ユリナ】","【ユリナ（第1章）】","【サイネ（第2章）】","【サイネ】","【トコヨ】","【トコヨ（旅芸人）】","【ヒミカ】","【ヒミカ（原初）】","【オボロ】","【オボロ（第3章）】","【ユキヒ】","【シンラ】","【ハガネ】","【チカゲ】","【チカゲ（第4章）】","【クルル】","【サリヤ】","【ライラ】","【ホノカ】","【ウツロ】","【ウツロ（終章）】"]
