@@ -3,6 +3,7 @@ import urllib.request
 import json
 import re
 import random
+import datetime
 
 client = discord.Client()
 
@@ -24,7 +25,6 @@ citycodes = {
 @client.event
 async def on_ready():
     print("logged in as " + client.user.name)
-    channel = client.get_channel('564818590935547925')
 
 @client.event
 async def on_message(message):
@@ -33,7 +33,7 @@ async def on_message(message):
             reply = "猫じゃないんですよ！"
             await message.channel.send(reply)
         elif message.content.startswith("!更新情報"):
-            msg = "【!pair】で被ることがなくなりました,やりましたね！\n【!fortune】でおみくじができます。大凶が出てもへこまないでくださいね"
+            msg = "【!rabo】でクルルさんに聞くことが出来るようになりました。\nboardのURLを更新しました。"
             await message.channel.send(msg)
         elif message.content.startswith("!help"):
             msg = "こちらが私のコマンドリストです！\n【!neko】,【!board】,【!pair】,【!turn】,【@Honoka】,【!fortune】,\n【megami〇（数字の数、女神をランダムに選出します）】,【天気○○(地域限定)】\nまた、いくつかの言葉に反応します！"
@@ -51,11 +51,11 @@ async def on_message(message):
         elif message.content.startswith("!turn"):
             mylist1 =["プレイヤー①","プレイヤー②"]
             mylist2 = ["様の先制攻撃です！","様が先攻です！","様が先に勝負を仕掛けました！","様が先手です"]
-            mylist3 = ["【野生の】","【紅蓮の】","【歴戦の】","【狂気の】","","","","","【修羅偏在の】","【八面六臂の】","【武神の】","【舞姫の】","【塵滅の】","【風来の】","","【衝撃の】","【楽師の】","","【叡智の】","","【絡繰の】"]
+            mylist3 = ["【野生の】","【紅蓮の】","【歴戦の】","【狂気の】","","","","","【八面六臂の】","【武神の】","【舞姫の】","【塵滅の】","【風来の】","【衝撃の】","【楽師の】","","【叡智の】","","【絡繰の】","【氷結の】","【探索者の】","【鏡映の】"]
             msg = random.choice(mylist3) + random.choice(mylist1) + random.choice(mylist2)
             await message.channel.send(msg)
         elif message.content.startswith("!board"):
-            reply = "胸に想いを 両手に花を 桜降る代に決闘を!\nプレイヤー1の参加用URL: https://furuyoni-simulator.herokuapp.com/play/FW6pXbHUQFqv\nプレイヤー2の参加用URL: https://furuyoni-simulator.herokuapp.com/play/5QkC4KQCHPGc\n観戦用URL: https://furuyoni-simulator.herokuapp.com/watch/4867"
+            reply = "胸に想いを 両手に花を 桜降る代に決闘を!\nプレイヤー1の参加用URL: https://furuyoni-simulator.herokuapp.com/play/xDZCLf2NvmdX\nプレイヤー2の参加用URL: https://furuyoni-simulator.herokuapp.com/play/nWXcT7dNqLer\n観戦用URL: https://furuyoni-simulator.herokuapp.com/watch/4999"
             await message.channel.send(reply)
         elif message.content.startswith("!pair"):
             mylist = ["【ユリナ】","【ユリナ（第1章）】","【サイネ（第2章）】","【サイネ】","【トコヨ】","【トコヨ（旅芸人）】","【ヒミカ】","【ヒミカ（原初）】","【オボロ】","【オボロ（第3章）】","【ユキヒ】","【シンラ】","【ハガネ】","【チカゲ】","【チカゲ（第4章）】","【クルル】","【サリヤ】","【ライラ】","【ホノカ】","【ウツロ】","【ウツロ（終章）】"]
@@ -87,6 +87,9 @@ async def on_message(message):
             mylist = ["寝ましょう","寝てください","お休みの時間ですよ","徹夜されたんですか？"]
             reply = random.choice(mylist)
             await message.channel.send(f"{message.author.mention}さん、" + reply)
+        elif message.content.startswith("!rabo"):
+            msg = "https://main-bakafire.ssl-lolipop.jp/furuyoni/kururun_lab/"
+            await message.channel.send(msg)
         elif message.content.startswith("天気"):
             reg_res = re.compile(u"天気(.+)").search(message.content)
             if reg_res:
