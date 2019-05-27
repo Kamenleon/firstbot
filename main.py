@@ -33,7 +33,7 @@ async def on_message(message):
             reply = "猫じゃないんですよ！"
             await message.channel.send(reply)
         elif message.content.startswith("!更新情報"):
-            msg = "【!rabo】でクルルさんに聞くことが出来るようになりました。\nboardのURLを更新しました。"
+            msg = "【!rabo】でクルルさんに聞くことが出来るようになりました。\n!boardのURLを更新しました。"
             await message.channel.send(msg)
         elif message.content.startswith("!help"):
             msg = "こちらが私のコマンドリストです！\n【!neko】,【!board】,【!pair】,【!turn】,【@Honoka】,【!fortune】,\n【megami〇（数字の数、女神をランダムに選出します）】,【天気○○(地域限定)】\nまた、いくつかの言葉に反応します！"
@@ -55,13 +55,17 @@ async def on_message(message):
             msg = random.choice(mylist3) + random.choice(mylist1) + random.choice(mylist2)
             await message.channel.send(msg)
         elif message.content.startswith("!board"):
-            reply = "胸に想いを 両手に花を 桜降る代に決闘を!\nプレイヤー1の参加用URL: https://furuyoni-simulator.herokuapp.com/play/xDZCLf2NvmdX\nプレイヤー2の参加用URL: https://furuyoni-simulator.herokuapp.com/play/nWXcT7dNqLer\n観戦用URL: https://furuyoni-simulator.herokuapp.com/watch/4999"
+            reply = "胸に想いを 両手に花を 桜降る代に決闘を!\n。プレイヤー1の参加用URL	https://furuyoni-simulator.herokuapp.com/play/VZwiZUphVNMn\nプレイヤー2の参加用URL	https://furuyoni-simulator.herokuapp.com/play/NDXtvn7rUdNt\n観戦用URL	https://furuyoni-simulator.herokuapp.com/watch/6471"
             await message.channel.send(reply)
         elif message.content.startswith("!pair"):
             mylist = ["【ユリナ】","【ユリナ（第1章）】","【サイネ（第2章）】","【サイネ】","【トコヨ】","【トコヨ（旅芸人）】","【ヒミカ】","【ヒミカ（原初）】","【オボロ】","【オボロ（第3章）】","【ユキヒ】","【シンラ】","【ハガネ】","【チカゲ】","【チカゲ（第4章）】","【クルル】","【サリヤ】","【ライラ】","【ホノカ】","【ウツロ】","【ウツロ（終章）】"]
             s = ','
             msg = s.join(random.sample(mylist,2)) 
             await message.channel.send(msg)
+        elif message.content == '大丈夫や':
+            mylist = ["本当ですか？","そうならいいのですが…"]
+            reply = random.choice(mylist)
+            await message.channel.send(reply)
         elif message.content.startswith("megami"):
             content = message.content
             pattern = '.*?(\d+).*'
