@@ -65,7 +65,7 @@ async def on_message(message):
             mylist2 = ["様の先制攻撃です！","様が先攻です！","様が先に勝負を仕掛けました！","様が先手です"]
             mylist3 = ["【野生の】","【紅蓮の】","【歴戦の】","【狂気の】","","","","","【八面六臂の】","【武神の】","【舞姫の】","【塵滅の】","【風来の】","【衝撃の】","【楽師の】","","【叡智の】","","【絡繰の】","【氷結の】","【探索者の】","【鏡映の】"]
             msg = random.choice(mylist3) + random.choice(mylist1) + random.choice(mylist2)
-       elif message.content.startswith("!board"):
+       　elif message.content.startswith("!board"):
             msg = "胸に想いを 両手に花を 桜降る代に決闘を!\nプレイヤー1の参加用URL	https://furuyoni-simulator.herokuapp.com/play/VZwiZUphVNMn\nプレイヤー2の参加用URL	https://furuyoni-simulator.herokuapp.com/play/NDXtvn7rUdNt\n観戦用URL	https://furuyoni-simulator.herokuapp.com/watch/6471"
         elif message.content == '大丈夫や':
             mylist = ["本当ですか？","そうならいいのですが…"]
