@@ -35,6 +35,9 @@ async def on_message(message):
         elif message.content.startswith("!更新情報"):
             msg = "【!rabo】でクルルさんに聞くことが出来るようになりました。\n!boardのURLを更新しました。"
             await message.channel.send(msg)
+        elif message.content == "!sakura"
+            msg = "ようこそ千本桜チャンネルへ！\nここのサポートキャラクター、ホノカと申します！\n分からないことあれば【!help】コマンドからコマンドを確認して下さい\nそれでは、桜降る代に決闘を！"
+            await message.channel.send(msg)
         elif message.content.startswith("!help"):
             msg = "こちらが私のコマンドリストです！\n【!neko】,【!board】,【!pair】,【!turn】,【@Honoka】,【!fortune】,\n【megami〇（数字の数、女神をランダムに選出します）】,【天気○○(地域限定)】\nまた、いくつかの言葉に反応します！"
             await message.channel.send(msg)
