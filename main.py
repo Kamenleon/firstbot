@@ -43,6 +43,8 @@ async def on_message(message):
                 msg = "あーマイクのテスト中\nこのチャンネルの説明は必要ありませんよね？"
             elif message.channel.id == 309050914231156736:
                 msg = "ようこそ、General Serverに！\nこちらではTRPGをプレイする際の募集、長期休暇に行われるゲーム会の日程調整などが行われます\n本サーバーのマスコットキャラクター、ホノカと申します！\n分からないことあれば【!help】とコマンドを打ってください。私とDMでも結構です。\n"
+            else:
+                msg = "ここのチャンネルは説明不要かと！"
         elif message.content.startswith("!help"):
             msg = "①こちらが私のコマンドリストです！\n通常用  【!wiki】,【!invite】,【!neko】,【@Honoka】,【!fortune】,【天気○○(地域限定)】\n桜降る代に決闘を用  【!board】,【!pair】,【!pair2】（第三拡張非対応バージョン）,【!turn】,【megami〇（数字）】,【!rabo】\n\n②また、いくつかの言葉に反応します！\n\n"
             dm = await message.author.create_dm()
@@ -85,9 +87,23 @@ async def on_message(message):
                 s = ','
                 msg = s.join(random.sample(mylist,number))
         elif message.content == "!fortune": # Embedを使ったメッセージ送信 と ランダムで要素を選択
+            msg1 = "http://bakafire.main.jp/twi_icon/twiicon_sa_"
+            mylist1 = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26"]
+            jpg = ".jpg"
+            icon = msg1 + random.choice(mylist1)+jpg
             embed = discord.Embed(title="おみくじ", description=f"{message.author.mention}さんの今日の運勢は！",color=0x2ECC69)
-            embed.set_thumbnail(url=message.author.avatar_url)
-            embed.add_field(name="[運勢] ", value=random.choice(('大吉','大吉','吉','吉','吉','凶','凶', '凶', '大凶')), inline=False)
+            embed.set_thumbnail(url=icon)
+            if(icon == "http://bakafire.main.jp/twi_icon/twiicon_sa_13.jpg"):
+                embed.add_field(name="[運勢] ", value="満天", inline=False)
+                embed.add_field(name="[女神から]", value='おめでとうございます、今日は最高の日ですよ！', inline=False)
+            elif(icon == "http://bakafire.main.jp/twi_icon/twiicon_sa_10.jpg"):
+                embed.add_field(name="[運勢] ", value="たのしーひ", inline=False)
+                embed.add_field(name="[女神から]", value='わたしといっしょにじっけんしましょー', inline=False)
+            elif(icon == "http://bakafire.main.jp/twi_icon/twiicon_sa_25.jpg"):
+                embed.add_field(name="[運勢] ", value="れっつごー！", inline=False)
+                embed.add_field(name="[女神から]", value='振り返らないこともまた大切なのです！', inline=False)
+            else:
+                embed.add_field(name="[運勢] ", value=random.choice(('大吉','大吉','吉','吉','吉','凶','凶', '凶', '大凶')), inline=False)
             await message.channel.send(embed=embed)
             return
         elif message.content.startswith("バカ"):
