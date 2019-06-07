@@ -1,4 +1,4 @@
-#ver1.03
+#ver1.04
 import discord
 import urllib.request
 import json
@@ -32,8 +32,8 @@ async def on_message(message):
     if client.user != message.author:
         if message.content.startswith('!neko'):
             msg = "猫じゃないんですよ！"
-        elif message.content.startswith("!更新情報"):#ver1.03
-            msg = "いくつかのコマンドを追加しました。詳しくは【!help】\nまた既存のコマンドも改良しています。"
+        elif message.content.startswith("!更新情報"):#ver1.04
+            msg = "既存のコマンドの改良を行いました！,詳しくは【!help】でお願いします。"
         elif message.content == "!wiki":
             msg =  "身内用TRPGのwikiです。管理人がやる気ないとか言わないでくださいね\nhttps://seesaawiki.jp/trpgon0924/"
         elif message.content == "!invite":
@@ -44,11 +44,16 @@ async def on_message(message):
             elif message.channel.id == 309050914231156736:
                 msg = "ようこそ、General Serverに！\nこちらではTRPGをプレイする際の募集、長期休暇に行われるゲーム会の日程調整などが行われます\n本サーバーのマスコットキャラクター、ホノカと申します！\n分からないことあれば【!help】とコマンドを打ってください。私とDMでも結構です。\n"
         elif message.content.startswith("!help"):
-            msg = "①こちらが私のコマンドリストです！\n通常用  【!wiki】,【!invite】,【!neko】,【@Honoka】,【!fortune】,【天気○○(地域限定)】\n桜降る代に決闘を用  【!board】,【!pair】,【!turn】,【megami〇（数字）】,【!rabo】\n\n②また、いくつかの言葉に反応します！\n\n"
+            msg = "①こちらが私のコマンドリストです！\n通常用  【!wiki】,【!invite】,【!neko】,【@Honoka】,【!fortune】,【天気○○(地域限定)】\n桜降る代に決闘を用  【!board】,【!pair】,【!pair2】（第三拡張非対応バージョン）,【!turn】,【megami〇（数字）】,【!rabo】\n\n②また、いくつかの言葉に反応します！\n\n"
             dm = await message.author.create_dm()
-            await dm.send(msg + "お役に立ちましたでしょうか？")
+            await dm.send(msg + "お役に立ちましたでしょうか？\nあ、前みたいにしてくれ　と思われたら連絡お願いします！")
             return
-        elif message.content.startswith("!pair"):
+        elif message.content == "!pair":
+            mylist = ["【ユリナ】","【ユリナ（第1章）】","【サイネ（第2章）】","【サイネ】","【トコヨ】","【トコヨ（旅芸人）】","【ヒミカ】","【ヒミカ（原初）】","【オボロ】","【オボロ（第3章）】","【ユキヒ】","【シンラ】","【ハガネ】","【チカゲ】","【チカゲ（第4章）】","【クルル】","【サリヤ】","【ライラ】","【ホノカ】","【ウツロ】","【ウツロ（終章）】","【ヤツハ】","【コルヌ】","【シンラ（教主）】","【クルル（探索者）】","【サイネ（徒神）】"]
+            s = ','
+            msg2 = s.join(random.sample(mylist,2)) 
+            msg = u'{},{}'.format(message.author.mention,msg2)
+        elif message.content == "!pair2":
             mylist = ["【ユリナ】","【ユリナ（第1章）】","【サイネ（第2章）】","【サイネ】","【トコヨ】","【トコヨ（旅芸人）】","【ヒミカ】","【ヒミカ（原初）】","【オボロ】","【オボロ（第3章）】","【ユキヒ】","【シンラ】","【ハガネ】","【チカゲ】","【チカゲ（第4章）】","【クルル】","【サリヤ】","【ライラ】","【ホノカ】","【ウツロ】","【ウツロ（終章）】"]
             s = ','
             msg2 = s.join(random.sample(mylist,2)) 
@@ -63,7 +68,7 @@ async def on_message(message):
         elif message.content.startswith("!turn"):
             mylist1 =["プレイヤー①","プレイヤー②"]
             mylist2 = ["様の先制攻撃です！","様が先攻です！","様が先に勝負を仕掛けました！","様が先手です"]
-            mylist3 = ["【野生の】","【紅蓮の】","【歴戦の】","【狂気の】","","","","","【八面六臂の】","【武神の】","【舞姫の】","【塵滅の】","【風来の】","【衝撃の】","【楽師の】","","【叡智の】","","【絡繰の】","【氷結の】","【探索者の】","【鏡映の】"]
+            mylist3 = ["【野生の】","【紅蓮の】","【歴戦の】","【狂気の】","","","【武神の】","【舞姫の】","【塵滅の】","【風来の】","【衝撃の】","【楽師の】","","【叡智の】","","【絡繰の】","【氷結の】","【探索者の】","【鏡映の】","【徒神の】","【教主の】","【終章の】"]
             msg = random.choice(mylist3) + random.choice(mylist1) + random.choice(mylist2)
         elif message.content.startswith("!board"):
             msg = "胸に想いを 両手に花を 桜降る代に決闘を!\nプレイヤー1の参加用URL	https://furuyoni-simulator.herokuapp.com/play/VZwiZUphVNMn\nプレイヤー2の参加用URL	https://furuyoni-simulator.herokuapp.com/play/NDXtvn7rUdNt\n観戦用URL	https://furuyoni-simulator.herokuapp.com/watch/6471"
@@ -76,7 +81,7 @@ async def on_message(message):
             result = re.match(pattern,content)
             if result:
                 number = int(result.group(1))
-                mylist = ["ユリナ ","サイネ ","トコヨ ","ヒミカ ","オボロ ","ユキヒ ","シンラ ","ハガネ ","チカゲ ","クルル ","サリヤ ","ライラ ","ホノカ ","ウツロ "]
+                mylist = ["ユリナ ","サイネ ","トコヨ ","ヒミカ ","オボロ ","ユキヒ ","シンラ ","ハガネ ","チカゲ ","クルル ","サリヤ ","ライラ ","ホノカ ","ウツロ ","コルヌ","ヤツハ"]
                 s = ','
                 msg = s.join(random.sample(mylist,number))
         elif message.content == "!fortune": # Embedを使ったメッセージ送信 と ランダムで要素を選択
