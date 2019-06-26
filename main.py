@@ -36,7 +36,8 @@ credential = {
                 "type": "service_account",
                 "project_id": os.environ['honokabot-244908'],
                 "private_key_id": os.environ['18223d439ec85e4b50f43871219dfee5b8cccf41'],
-                "private_key": os.environ['MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCwnrolhDOnkT+v
+                "private_key": os.environ['-----BEGIN PRIVATE KEY-----
+                                          MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCwnrolhDOnkT+v
                 XnFmgQdPk2c3mEsUNj3Bofmr+fNgtTBnOT6yG8lzi79DI7wea/BsjLi0QfM1/Lft\nS5ZTs2qrZCkhVhZ/B43hw/z4jWDcK0n1ZkV4WPLx8/XIoyNg/okyWQWsok3hpMgr
                                           AovsinePELDFuED0KaZ5rmEvhlaqcY+f3nMLtS5SpbnVlVzknTKwhPyi8XjjgI9B
                                           G2aCxAiMp1TU1lMErTOPEyvOOdeEEDR3sjtWah0YkKiwEwqu+isud0sTLbRCCFxl
@@ -60,7 +61,8 @@ credential = {
                                           3hxoYNmh/6PzHCr3FLG3AWd2eHwMENXpzXynlLUCgYBMxU2BZZ3Tcw0S7VcXLeha
                                           eE+TOU+YCCrTiQMwKz9Dn7+KnTeGpNtnIvMrsRIOZtBnxwwkmz62d/RJAgUOnhWZ
                                           clZQn1WEHxPvscGUSTiRWzmDhr2HPVulblaGsHAho1HnpWRwc7p2EhmLE2zOFdvx
-                                          hG14NiqhRa02WABPS0giwQ'],
+                                          hG14NiqhRa02WABPS0giwQ==
+                                          -----END PRIVATE KEY-----'],
                 "client_email": os.environ['python@honokabot-244908.iam.gserviceaccount.com'],
                 "client_id": os.environ['118159874454626784433'],
                 "auth_uri": "https://accounts.google.com/o/oauth2/auth",
