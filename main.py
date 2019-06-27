@@ -5,8 +5,8 @@ import json
 import re
 import random
 import datetime
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+#import gspread
+#from oauth2client.service_account import ServiceAccountCredentials
 
 client = discord.Client()
 
