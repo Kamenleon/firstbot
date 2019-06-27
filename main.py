@@ -25,59 +25,6 @@ citycodes = {
     "那覇"   : '471010'
 }
 
-#ServiceAccountCredentials：Googleの各サービスへアクセスできるservice変数を生成します。
-from oauth2client.service_account import ServiceAccountCredentials 
-#2つのAPIを記述しないとリフレッシュトークンを3600秒毎に発行し続けなければならない
-scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-#認証情報設定
-#ダウンロードしたjsonファイル名をクレデンシャル変数に設定（秘密鍵、Pythonファイルから読み込みしやすい位置に置く）
-#credentials = ServiceAccountCredentials.from_json_keyfile_name('C:/Users/leonk/Documents/discordbot/Honokabot-18223d439ec8.json', scope)
-credential = {
-                "type": "service_account",
-                "project_id": os.environ['honokabot-244908'],
-                "private_key_id": os.environ['18223d439ec85e4b50f43871219dfee5b8cccf41'],
-                "private_key": os.environ['MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCwnrolhDOnkT+v
-                                          XnFmgQdPk2c3mEsUNj3Bofmr+fNgtTBnOT6yG8lzi79DI7wea/BsjLi0QfM1/Lft
-                                          S5ZTs2qrZCkhVhZ/B43hw/z4jWDcK0n1ZkV4WPLx8/XIoyNg/okyWQWsok3hpMgr
-                                          AovsinePELDFuED0KaZ5rmEvhlaqcY+f3nMLtS5SpbnVlVzknTKwhPyi8XjjgI9B
-                                          G2aCxAiMp1TU1lMErTOPEyvOOdeEEDR3sjtWah0YkKiwEwqu+isud0sTLbRCCFxl
-                                          +dBZKSbBARYxfnUF8hUtkXnz7gUsJxo5xounby/UP76g7qUyGPvTL+dB9H9EUf8s
-                                          k20Jj5EZAgMBAAECggEAANUP6vzVAHcsuTUODqqM/L6xAudji5BEF7GvxKXKZ21O
-                                          lDICIcBpa39t2RPoYVCi7dfkjQUoID2SqG8ol3VFC2k0h2V2zg4enQoeoPTUxRhi
-                                          75BGu2bkuh6lEfuy0YU896JPL7XlWtmUkcwDj5Ox4Bcn2om2h7EIA3qFvcPYGova
-                                          I2LF3RyxyBmM0LwJHuTvszVd3tcySxByIz5PYZB25EjFyq6n+gp5N/GTK5M+Z2Gu
-                                          ZgoDMPSdQlmSeuMNlydMaQQd6K2Y/ntrQQ5iD+cwY2fsPW9d1qH7gwfnjBLKGp9g
-                                          5799YmBVWOQ6BhOW+k1bMriDwo60+d8+yCD++7FQAQKBgQD04EFxPwTEdiumfvYO
-                                          I1d5LSscNwEUswiOlhBXmL9DVFBXZG9gk0TSv+mLQshv2Z52MzqPbHu7HeGNxOYM
-                                          zwwSVuABM43N7uQySmh4q9KQ/tA1viKd9fAqblTfir01chVOimD0ZzqYVibIsRKD
-                                          7mnEqfT7Qjs0M6xM5arR57qTswKBgQC4pLM8AArN4xVemjuPKxfxSa1nP/MHyfzZ
-                                          MFsyzsc8BT/mkz3Lp5ZOzjcmslYvfVI3Bow7CE2L/up4RmDpafuQXvGMUeAyoIkl
-                                          c15WJoL5m4MQpA2nJF3SzT8z9J9FB67EF+lWH/36lRvOqMkZHfyM/fEg7QwZ2SXk
-                                          KgpKFm3SAwKBgGCIAuRMrmlwGBcDV6YNIo9/Uc5GlKN/TDFBUOHnMgattxosWoec
-                                          pnXZ94vRYMhO5lu8KCqf3krOJbtIUlPcTurv2lA+7Xiv4r88e+COA2zrNlLpSCYy
-                                          7GEdq1GQFLR765BRlpTiGMQyuglFXIIruwAu64cc/c+/Sv3pT6R9kBxnAoGARX5n
-                                          nxt89YSUVGjEJdxYRI4wX33oIHRbX/sdOAAvaF2pcUTVq0LGBZ8DjuLsIS+Ps/oY
-                                          6Vb0qM4mvWHvs6oZ7nptexyNv0BAngHP7ajM/tkS+T5ljRTY4zAwq4NUNozvsAo3
-                                          3hxoYNmh/6PzHCr3FLG3AWd2eHwMENXpzXynlLUCgYBMxU2BZZ3Tcw0S7VcXLeha
-                                          eE+TOU+YCCrTiQMwKz9Dn7+KnTeGpNtnIvMrsRIOZtBnxwwkmz62d/RJAgUOnhWZ
-                                          clZQn1WEHxPvscGUSTiRWzmDhr2HPVulblaGsHAho1HnpWRwc7p2EhmLE2zOFdvx
-                                          hG14NiqhRa02WABPS0giwQ'],
-                "client_email": os.environ['python@honokabot-244908.iam.gserviceaccount.com'],
-                "client_id": os.environ['118159874454626784433'],
-                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-                "token_uri": "https://oauth2.googleapis.com/token",
-                "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-                "client_x509_cert_url":  os.environ['https://www.googleapis.com/robot/v1/metadata/x509/python%40honokabot-244908.iam.gserviceaccount.com']
-             }
-
-credentials = ServiceAccountCredentials.from_json_keyfile_dict(credential, scope)
-#OAuth2の資格情報を使用してGoogle APIにログインします。
-gc = gspread.authorize(credentials)
-#共有設定したスプレッドシートキーを変数[SPREADSHEET_KEY]に格納する。
-SPREADSHEET_KEY = '18b95EzZEoOP0UFOY0VnCaT8K8Gx_QoTeyUkzLJgfE9M'
-#共有設定したスプレッドシートのシート1を開く
-worksheet = gc.open_by_key(SPREADSHEET_KEY).sheet1
-
 @client.event
 async def on_ready():
     print("logged in as " + client.user.name)
@@ -120,13 +67,6 @@ async def on_message(message):
             mylist2 = ["様の先制攻撃です！","様が先攻です！","様が先に勝負を仕掛けました！","様が先手です"]
             mylist3 = ["【野生の】","【紅蓮の】","【歴戦の】","【狂気の】","","","【武神の】","【舞姫の】","【塵滅の】","【風来の】","【衝撃の】","【楽師の】","","【叡智の】","","【絡繰の】","【氷結の】","【探索者の】","【鏡映の】","【徒神の】","【教主の】","【終章の】"]
             msge = random.choice(mylist3) + random.choice(mylist1) + random.choice(mylist2)
-            #A1セルの値を受け取る 
-            import_value = int(worksheet.acell('A2').value)
-            #A1セルの値に100加算した値をB1セルに表示させる
-            export_value = import_value+1
-            if(export_value%50 == 0):
-                msge = msge + "\nおめでとうございます！ 今回は記念すべき{}回目の戦いですよ！".format(export_value)
-            worksheet.update_cell(2,1, export_value)
         elif message.content.startswith("!board"):
             msge = "胸に想いを 両手に花を 桜降る代に決闘を!\nプレイヤー1の参加用URL	https://furuyoni-simulator.herokuapp.com/play/VZwiZUphVNMn\nプレイヤー2の参加用URL	https://furuyoni-simulator.herokuapp.com/play/NDXtvn7rUdNt\n観戦用URL	https://furuyoni-simulator.herokuapp.com/watch/6471"
         elif message.content.startswith("megami"):
