@@ -6,8 +6,6 @@ import re
 import random
 import datetime
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-import oauth2client.client
 
 client = discord.Client()
 
@@ -35,15 +33,15 @@ scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/aut
 #credentials = ServiceAccountCredentials.from_json_keyfile_name('C:/Users/leonk/Documents/discordbot/Honokabot-18223d439ec8.json', scope)
 credential = {
                 "type": "service_account",
-                "project_id": os.environ['honokabot-244908'],
-                "private_key_id": os.environ['3146a5bdd6fefba405b4069250829fba3ecfc2f8'],
+                "project_id": os.environ['SHEET_PROJECT_ID'],
+                "private_key_id": os.environ['SHEET_PRIVATE_KEY_ID'],
                 "private_key": os.environ['SHEET_PRIVATE_KEY'],
-                "client_email": os.environ['honoka2@honokabot-244908.iam.gserviceaccount.com'],
-                "client_id": os.environ['101863658559124997226'],
+                "client_email": os.environ['SHEET_CLIENT_EMAIL'],
+                "client_id": os.environ['SHEET_CLIENT_ID'],
                 "auth_uri": "https://accounts.google.com/o/oauth2/auth",
                 "token_uri": "https://oauth2.googleapis.com/token",
                 "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-                "client_x509_cert_url":  os.environ['https://www.googleapis.com/robot/v1/metadata/x509/honoka2%40honokabot-244908.iam.gserviceaccount.com']
+                "client_x509_cert_url":  os.environ['SHEET_CLIENT_X509_CERT_URL']
              }
 
 credentials = ServiceAccountCredentials.from_json_keyfile_dict(credential, scope)
@@ -53,6 +51,7 @@ gc = gspread.authorize(credentials)
 SPREADSHEET_KEY = '18b95EzZEoOP0UFOY0VnCaT8K8Gx_QoTeyUkzLJgfE9M'
 #共有設定したスプレッドシートのシート1を開く
 worksheet = gc.open_by_key(SPREADSHEET_KEY).sheet1
+
 
 @client.event
 async def on_ready():
