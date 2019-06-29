@@ -24,7 +24,6 @@ citycodes = {
     "那覇"   : '471010'
 }
 
-
 @client.event
 async def on_ready():
     print("logged in as " + client.user.name)
