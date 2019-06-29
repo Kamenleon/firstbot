@@ -24,34 +24,6 @@ citycodes = {
     "那覇"   : '471010'
 }
 
-#ServiceAccountCredentials：Googleの各サービスへアクセスできるservice変数を生成します。
-from oauth2client.service_account import ServiceAccountCredentials 
-#2つのAPIを記述しないとリフレッシュトークンを3600秒毎に発行し続けなければならない
-scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-#認証情報設定
-#ダウンロードしたjsonファイル名をクレデンシャル変数に設定（秘密鍵、Pythonファイルから読み込みしやすい位置に置く）
-#credentials = ServiceAccountCredentials.from_json_keyfile_name('C:/Users/leonk/Documents/discordbot/Honokabot-18223d439ec8.json', scope)
-credential = {
-                "type": "service_account",
-                "project_id": os.environ['SHEET_PROJECT_ID'],
-                "private_key_id": os.environ['SHEET_PRIVATE_KEY_ID'],
-                "private_key": os.environ['SHEET_PRIVATE_KEY'],
-                "client_email": os.environ['SHEET_CLIENT_EMAIL'],
-                "client_id": os.environ['SHEET_CLIENT_ID'],
-                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-                "token_uri": "https://oauth2.googleapis.com/token",
-                "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-                "client_x509_cert_url":  os.environ['SHEET_CLIENT_X509_CERT_URL']
-             }
-
-credentials = ServiceAccountCredentials.from_json_keyfile_dict(credential, scope)
-#OAuth2の資格情報を使用してGoogle APIにログインします。
-gc = gspread.authorize(credentials)
-#共有設定したスプレッドシートキーを変数[SPREADSHEET_KEY]に格納する。
-SPREADSHEET_KEY = '18b95EzZEoOP0UFOY0VnCaT8K8Gx_QoTeyUkzLJgfE9M'
-#共有設定したスプレッドシートのシート1を開く
-worksheet = gc.open_by_key(SPREADSHEET_KEY).sheet1
-
 
 @client.event
 async def on_ready():
@@ -95,13 +67,6 @@ async def on_message(message):
             mylist2 = ["様の先制攻撃です！","様が先攻です！","様が先に勝負を仕掛けました！","様が先手です"]
             mylist3 = ["【野生の】","【紅蓮の】","【歴戦の】","【狂気の】","","","【武神の】","【舞姫の】","【塵滅の】","【風来の】","【衝撃の】","【楽師の】","","【叡智の】","","【絡繰の】","【氷結の】","【探索者の】","【鏡映の】","【徒神の】","【教主の】","【終章の】"]
             msge = random.choice(mylist3) + random.choice(mylist1) + random.choice(mylist2)
-            #A1セルの値を受け取る 
-            import_value = int(worksheet.acell('A2').value)
-            #A1セルの値に100加算した値をB1セルに表示させる
-            export_value = import_value+1
-            if(export_value%50 == 0):
-                msge = msge + "\nおめでとうございます！ 今回は記念すべき{}回目の戦いですよ！".format(export_value)
-            worksheet.update_cell(2,1, export_value)
         elif message.content.startswith("!board"):
             msge = "胸に想いを 両手に花を 桜降る代に決闘を!\nプレイヤー1の参加用URL	https://furuyoni-simulator.herokuapp.com/play/VZwiZUphVNMn\nプレイヤー2の参加用URL	https://furuyoni-simulator.herokuapp.com/play/NDXtvn7rUdNt\n観戦用URL	https://furuyoni-simulator.herokuapp.com/watch/6471"
         elif message.content.startswith("megami"):
