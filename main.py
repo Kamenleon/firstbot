@@ -5,7 +5,7 @@ import json
 import re
 import random
 import datetime
-import gspread
+#import gspread
 
 client = discord.Client()
 
