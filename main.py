@@ -82,7 +82,7 @@ async def on_message(message):
                 msge = s.join(random.sample(mylist,number))
         elif message.content == "!fortune": # Embedを使ったメッセージ送信 と ランダムで要素を選択
             msg1 = "http://bakafire.main.jp/twi_icon/twiicon_sa_"
-            mylist1 = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26"]
+            mylist1 = ["01","02","03","04","05a","05b","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26"]
             jpg = ".jpg"
             icon = msg1 + random.choice(mylist1)+jpg
             embed = discord.Embed(title="おみくじ", description=f"{message.author.mention}さんの今日の運勢は！",color=0x2ECC69)
