@@ -9,6 +9,88 @@ import datetime
 
 client = discord.Client()
 
+def skill(msg2):
+    cardlist = []
+    if "ユリナ（第一章）" in msg2:
+        card = ["【乱打】","【癇癪玉】","【不完全浦浪嵐】"]
+        cardlist.extend(card)
+    elif "ユリナ" in msg2:
+        card = ["【気炎万丈】","【居合】","【浦浪嵐】"]
+        cardlist.extend(card)
+    if "サイネ（第2章）" in msg2:
+        card = ["【氷の音】","【伴奏】","【二重奏:弾奏氷明】"]
+        cardlist.extend(card)
+    elif "サイネ（徒神）" in msg2:
+        card = ["【裏斬り】","【遺響壁】","【絶唱絶華】"]
+        cardlist.extend(card)
+    elif "サイネ" in msg2:
+        card = ["【見切り】","【石突】","【響鳴共振】"]
+        cardlist.extend(card)
+    if "トコヨ（旅芸人）" in msg2:
+        card = ["【陽の音】","【奏流し】","【二重奏:吹弾陽明】"]
+        cardlist.extend(card)
+    elif "トコヨ" in msg2:
+        card = ["【風舞台】","【要返し】","【常世の月】"]
+        cardlist.extend(card)
+    if "ヒミカ（原初）" in msg2:
+        card = ["【火炎流】","【殺意】","【炎天・紅緋弥香】"]
+        cardlist.extend(card)
+    elif "ヒミカ" in msg2:
+        card = ["【フルバースト】","【スモーク】","【クリムゾンゼロ】"]
+        cardlist.extend(card)
+    if "オボロ（第3章）" in msg2:
+        card = ["【手裏剣】","【不意打ち】","【神代枝】"]
+        cardlist.extend(card)
+    elif "オボロ" in msg2:
+        card = ["【分身の術】","【生体活性】","【虚魚】","【鳶影】"]
+        cardlist.extend(card)
+    if "ユキヒ" in msg2:
+        card = ["【しこみばり/ふくみばり】","【かさまわし】","【どろりうら】"]
+        cardlist.extend(card)
+    if "シンラ（教主）" in msg2:
+        card = ["【真言】","【使徒】","【全知経典】"]
+        cardlist.extend(card)
+    elif "シンラ" in msg2:
+        card = ["【立論】","【森羅判証】","【皆式理解】","【天地反駁】"]
+        cardlist.extend(card)
+    if "ハガネ" in msg2:
+        card = ["【大地砕き】","【引力場】","【大天空クラッシュ】"]
+        cardlist.extend(card)
+    if "チカゲ（第4章）" in msg2:
+        card = ["【仕掛け番傘】","【奮迅】","【残滓の絆毒】"]
+        cardlist.extend(card)
+    elif "チカゲ" in msg2:
+        card = ["【首切り】","【飛苦無】","【闇昏千影の生きる道】"]
+        cardlist.extend(card)
+    if "クルル（探検家）" in msg2:
+        card = ["【あならいず】","【だうじんぐ】","【らすとりさーち】"]
+        cardlist.extend(card)
+    elif "クルル" in msg2:
+        card = ["【りげいなー】","【えれきてる】","【いんだすとりあ】"]
+        cardlist.extend(card)
+    if "サリヤ" in msg2:
+        card = ["【Shield Charge】","【Steam Cannon】","【Julia`s Blackbox】"]
+        cardlist.extend(card)
+    if "ライラ" in msg2:
+        card = ["【雷爆風神爪】","【天雷召喚陣】","【円環輪廻旋】"]
+        cardlist.extend(card)
+    if "ホノカ" in msg2:
+        card = ["【義旗共振】","【桜の翅】","【胸に想いを】"]
+        cardlist.extend(card)
+    if "ウツロ（終章）" in msg2:
+        card = ["【蝕みの塵】","【残響装置:枢式】","【虚偽】"]
+        cardlist.extend(card)
+    elif "ウツロ" in msg2:
+        card = ["【影の翅】","【遺灰呪】","【灰滅】"]
+        cardlist.extend(card)
+    if "コルヌ" in msg2:
+        card = ["【凍縛場】","【絶対零度】","【ポルチャルトー】"]
+        cardlist.extend(card)
+    if "ヤツハ" in msg2:
+        card = ["【昏い顎】","【寄花】","【六葉鏡の星の海】"]
+        cardlist.extend(card)
+    return cardlist
+
 citycodes = {
     "名古屋": '230010',
     "東京"   : '130010',
@@ -56,6 +138,12 @@ async def on_message(message):
             s = ','
             msg2 = s.join(random.sample(mylist,2)) 
             msge = u'{},{}'.format(message.author.mention,msg2)
+            point = ["を使われてはいかがでしょうか？","を使ってみましょう！","はお勧めですよ！","もありかもです！","の組み合わせが見てみたいです！"]
+            cardlist = skill(msg2)
+            best2 = s.join(random.sample(cardlist,2))  + random.choice(point)
+            await message.channel.send(msge)
+            await message.channel.send(best2)
+            return
         elif message.content == "!pair2":
             mylist = ["【ユリナ】","【ユリナ（第1章）】","【サイネ（第2章）】","【サイネ】","【トコヨ】","【トコヨ（旅芸人）】","【ヒミカ】","【ヒミカ（原初）】","【オボロ】","【オボロ（第3章）】","【ユキヒ】","【シンラ】","【ハガネ】","【チカゲ】","【チカゲ（第4章）】","【クルル】","【サリヤ】","【ライラ】","【ホノカ】","【ウツロ】","【ウツロ（終章）】"]
             s = ','
