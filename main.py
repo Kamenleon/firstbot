@@ -239,4 +239,4 @@ async def on_member_join(self, member):
         to_send = '{0.mention}さん、 {1.name}へようこそ!\n楽しくやっていきましょうね'.format(member, guild)
         await guild.system_channel.send(to_send)
 
-client.run("NTY1MTE1NDY1MTIzMjMzODAy.XKxu5g.h4gKk10iuuMfo47oiV_aJZTQGk0")
+client.run("NTY1MTE1NDY1MTIzMjMzODAy.XSx0Mw.yhgYCQKfkutL0ZXZPD5wStt6Lgw")
