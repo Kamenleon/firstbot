@@ -139,11 +139,11 @@ async def on_message(message):
             msg2 = s.join(random.sample(mylist,2)) 
             msge = u'{},{}'.format(message.author.mention,msg2)
             point = ["を使われてはいかがでしょうか？","を使ってみましょう！","はお勧めですよ！","もありかもです！","の組み合わせが見てみたいです！"]
-            cardlist = skill(msg2)
-            best2 = s.join(random.sample(cardlist,2))  + random.choice(point)
-            await message.channel.send(msge)
-            await message.channel.send(best2)
-            return
+            splitset = msg2.split(",")
+            cardset1 = skill(splitset[0])
+            cardset2 = skill(splitset[1])
+            best2 = random.choice(cardset1) + "," + random.choice(cardset2) + random.choice(point)
+            msge = msge + "\n" + best2
         elif message.content == "!pair2":
             mylist = ["【ユリナ】","【ユリナ（第1章）】","【サイネ（第2章）】","【サイネ】","【トコヨ】","【トコヨ（旅芸人）】","【ヒミカ】","【ヒミカ（原初）】","【オボロ】","【オボロ（第3章）】","【ユキヒ】","【シンラ】","【ハガネ】","【チカゲ】","【チカゲ（第4章）】","【クルル】","【サリヤ】","【ライラ】","【ホノカ】","【ウツロ】","【ウツロ（終章）】"]
             s = ','
