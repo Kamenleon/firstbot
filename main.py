@@ -232,11 +232,4 @@ async def on_message(message):
             return
         await message.channel.send(msge)
 
-@client.event
-async def on_member_join(self, member):
-    guild = member.guild
-    if guild.system_channel is not None:
-        to_send = '{0.mention}さん、 {1.name}へようこそ!\n楽しくやっていきましょうね'.format(member, guild)
-        await guild.system_channel.send(to_send)
-
 client.run("NjAwMzEyMTY0MjUwNjgxMzQ0.XSx6cg.BDK8bUTP1gVhhnruTvXvn3_Vl2w")
