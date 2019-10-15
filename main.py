@@ -139,6 +139,10 @@ async def on_message(message):
             msg2 = s.join(random.sample(mylist,2)) 
             msge = u'{},{}'.format(message.author.mention,msg2)
             point = ["を使われてはいかがでしょうか？","を使ってみましょう！","はお勧めですよ！","もありかもです！","の組み合わせが見てみたいです！"]
+            if message.user.id != 235269796235706368:
+                msge = msge + random.choice(point)
+                await message channel.send()
+                return 
             splitset = msg2.split(",")
             cardset1 = skill(splitset[0])
             cardset2 = skill(splitset[1])
