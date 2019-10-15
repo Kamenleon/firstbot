@@ -236,4 +236,4 @@ async def on_message(message):
             return
         await message.channel.send(msge)
 
-client.run("NjAwMzEyMTY0MjUwNjgxMzQ0.XSx6cg.BDK8bUTP1gVhhnruTvXvn3_Vl2w")
+client.run("NjAwMzEyMTY0MjUwNjgxMzQ0.XaXYFw.-G93ivwKS8ZpxzXIHprLDLkXJN4")
